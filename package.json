@@ -1,0 +1,23 @@
+{
+  "name": "vt-embedded-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@codemirror/lang-javascript": "^6.2.2",
+    "@codemirror/state": "^6.5.2",
+    "@codemirror/view": "^6.36.2",
+    "@typescript/ata": "^0.9.7",
+    "@typescript/vfs": "^1.6.1",
+    "@valtown/codemirror-ts": "3.0.0-13",
+    "codemirror": "^6.0.1",
+    "comlink": "^4.4.2",
+    "p-lazy": "^5.0.0"
+  }
+}
