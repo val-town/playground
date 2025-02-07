@@ -4,12 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@codemirror/autocomplete": "^6.18.4",
     "@codemirror/lang-javascript": "^6.2.2",
     "@codemirror/state": "^6.5.2",
     "@codemirror/view": "^6.36.2",
@@ -18,6 +21,8 @@
     "@valtown/codemirror-ts": "3.0.0-13",
     "codemirror": "^6.0.1",
     "comlink": "^4.4.2",
-    "p-lazy": "^5.0.0"
+    "p-lazy": "^5.0.0",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0"
   }
 }
