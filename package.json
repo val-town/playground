@@ -8,19 +8,26 @@
     "dev": "vite"
   },
   "keywords": [],
-  "author": "",
+  "author": "Tom MacWright",
   "license": "ISC",
   "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@codemirror/autocomplete": "^6.18.4",
     "@codemirror/lang-javascript": "^6.2.2",
     "@codemirror/state": "^6.5.2",
     "@codemirror/view": "^6.36.2",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
     "@typescript/ata": "^0.9.7",
     "@typescript/vfs": "^1.6.1",
     "@valtown/codemirror-ts": "3.0.0-13",
     "codemirror": "^6.0.1",
     "comlink": "^4.4.2",
+    "fetch-event-stream": "^0.1.5",
     "p-lazy": "^5.0.0",
     "typescript": "^5.7.3",
     "vite": "^6.1.0"
