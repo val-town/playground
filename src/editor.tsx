@@ -39,7 +39,7 @@ if (false) {
 export function Playground({
   code,
   workerPath,
-}: { code: string; workerPath?: string }) {
+}: { code: string; workerPath?: string | URL }) {
   const ref = useRef<HTMLDivElement>(null);
   const cmRef = useRef<EditorView>(null);
   const [key, setKey] = useState("");
@@ -47,14 +47,13 @@ export function Playground({
 
   useEffect(() => {
     if (!ref.current || cmRef.current) return;
-    const innerWorker = new Worker(
-      workerPath
-        ? new URL(workerPath, import.meta.url)
-        : new URL("./worker.ts", import.meta.url),
-      {
-        type: "module",
-      },
-    );
+    const innerWorker = workerPath
+      ? new Worker(workerPath, {
+          type: "module",
+        })
+      : new Worker(new URL("./worker.ts?worker", import.meta.url), {
+          type: "module",
+        });
     const worker = Comlink.wrap<WorkerShape>(innerWorker);
     const container = new Compartment();
     cmRef.current = new EditorView({
