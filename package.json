@@ -1,5 +1,5 @@
 {
-  "name": "vt-embedded-api",
+  "name": "@valtown/playground",
   "version": "1.0.1",
   "description": "",
   "scripts": {
@@ -7,9 +7,7 @@
     "dev": "vite",
     "prepublishOnly": "vite build"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "type": "module",
   "main": "./dist/vtembed.umd.cjs",
   "module": "./dist/vtembed.js",
