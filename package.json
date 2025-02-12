@@ -20,9 +20,9 @@
   "keywords": [],
   "author": "Tom MacWright",
   "license": "ISC",
-  "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
