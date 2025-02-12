@@ -27,10 +27,19 @@ type Output =
       message: string;
     };
 
+// biome-ignore lint/correctness/noConstantCondition: <explanation>
+if (false) {
+  // This won't run. It is here to trick vite into
+  // building the worker.
+  const innerWorker = new Worker(new URL("./worker.ts", import.meta.url), {
+    type: "module",
+  });
+}
+
 export function Playground({
   code,
   workerPath,
-}: { code: string; workerPath: string }) {
+}: { code: string; workerPath?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const cmRef = useRef<EditorView>(null);
   const [key, setKey] = useState("");
@@ -39,7 +48,9 @@ export function Playground({
   useEffect(() => {
     if (!ref.current || cmRef.current) return;
     const innerWorker = new Worker(
-      new URL(workerPath ?? "./worker.ts", import.meta.url),
+      workerPath
+        ? new URL(workerPath, import.meta.url)
+        : new URL("./worker.ts", import.meta.url),
       {
         type: "module",
       },
