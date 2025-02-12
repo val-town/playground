@@ -27,15 +27,6 @@ type Output =
       message: string;
     };
 
-// biome-ignore lint/correctness/noConstantCondition: <explanation>
-if (false) {
-  // This won't run. It is here to trick vite into
-  // building the worker.
-  const innerWorker = new Worker(new URL("./worker.ts", import.meta.url), {
-    type: "module",
-  });
-}
-
 export function Playground({
   code,
   workerPath,
