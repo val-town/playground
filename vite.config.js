@@ -6,6 +6,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   base: "./",
+  root: process.env.DEV ? "./demo" : "./",
   build: {
     lib: {
       entry: resolve(__dirname, "src/editor.tsx"),

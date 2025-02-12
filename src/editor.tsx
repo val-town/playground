@@ -27,7 +27,10 @@ type Output =
       message: string;
     };
 
-export function Playground({ code }: { code: string }) {
+export function Playground({
+  code,
+  workerPath,
+}: { code: string; workerPath: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const cmRef = useRef<EditorView>(null);
   const [key, setKey] = useState("");
@@ -35,9 +38,12 @@ export function Playground({ code }: { code: string }) {
 
   useEffect(() => {
     if (!ref.current || cmRef.current) return;
-    const innerWorker = new Worker(new URL("./worker.ts", import.meta.url), {
-      type: "module",
-    });
+    const innerWorker = new Worker(
+      new URL(workerPath ?? "./worker.ts", import.meta.url),
+      {
+        type: "module",
+      },
+    );
     const worker = Comlink.wrap<WorkerShape>(innerWorker);
     const container = new Compartment();
     cmRef.current = new EditorView({
@@ -71,7 +77,7 @@ export function Playground({ code }: { code: string }) {
         ]),
       });
     });
-  }, [code]);
+  }, [code, workerPath]);
 
   const run = useCallback(async () => {
     if (!cmRef.current) return;

@@ -4,12 +4,10 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
-    "dev": "vite",
+    "dev": "DEV=true vite",
     "prepublishOnly": "vite build"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "type": "module",
   "main": "./dist/vtembed.umd.cjs",
   "module": "./dist/vtembed.js",
