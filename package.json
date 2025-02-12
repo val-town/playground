@@ -2,10 +2,20 @@
   "name": "vt-embedded-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "vite"
+    "dev": "vite",
+    "prepublishOnly": "vite build"
+  },
+  "files": ["dist"],
+  "type": "module",
+  "main": "./dist/vtembed.umd.cjs",
+  "module": "./dist/vtembed.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vtembed.js",
+      "require": "./dist/vtembed.umd.cjs"
+    }
   },
   "keywords": [],
   "author": "Tom MacWright",
