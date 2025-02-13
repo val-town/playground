@@ -1,15 +1,19 @@
 {
   "name": "@valtown/playground",
   "version": "1.0.6",
-  "description": "",
+  "description": "Interactive playground to run code",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/val-town/playground"
+  },
+  "homepage": "https://github.com/val-town/playground",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
     "dev": "DEV=true vite",
     "prepublishOnly": "vite build"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "type": "module",
   "main": "./dist/vtembed.umd.cjs",
   "module": "./dist/vtembed.js",
@@ -19,7 +23,7 @@
       "require": "./dist/vtembed.umd.cjs"
     }
   },
-  "keywords": [],
+  "keywords": ["valtown", "val-town", "typescript", "codemirror"],
   "author": "Tom MacWright",
   "license": "ISC",
   "peerDependencies": {
