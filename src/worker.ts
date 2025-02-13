@@ -12,8 +12,6 @@ import ts from "typescript";
 // NOTE: do not use TypeScript syntax in this file, it is not auto-transpiled
 // because we proxy this file and Deno thinks that Deno is making the request
 
-console.log("Booting up");
-
 const worker = createWorker({
   env: new pLazy(async (resolve) => {
     const fsMap = await createDefaultMapFromCDN(
@@ -29,7 +27,13 @@ const worker = createWorker({
       ts,
     );
     const system = createSystem(fsMap);
-    const compilerOpts = {};
+    const compilerOpts = {
+      target: ts.ScriptTarget.ES2022,
+      module: ts.ModuleKind.ES2022,
+      moduleDetection: ts.ModuleDetectionKind.Force,
+      moduleResolution: ts.ModuleResolutionKind.NodeJs,
+      allowJs: true,
+    };
     resolve(createVirtualTypeScriptEnvironment(system, [], ts, compilerOpts));
   }),
   onFileUpdated(_env, _path, code) {
@@ -43,7 +47,6 @@ const ata = setupTypeAcquisition({
   logger: console,
   delegate: {
     receivedFile: (code, path) => {
-      console.log(code, path);
       worker.getEnv().createFile(path, code);
     },
   },

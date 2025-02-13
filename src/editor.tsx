@@ -86,7 +86,7 @@ export function Playground({
 
     const formData = new FormData();
     formData.append("code", doc);
-    formData.append("key", doc);
+    formData.append("key", key);
 
     const res = await fetch(
       "https://maxm--58271fa8e3f211ef8569e6cdfca9ef9f.web.val.run/submit",
@@ -115,7 +115,7 @@ export function Playground({
     } else {
       setOutput([{ kind: "error", err: "Failed to run code" }]);
     }
-  }, []);
+  }, [key]);
 
   return (
     <div className="vt-embed">
@@ -160,17 +160,14 @@ export function Playground({
                 );
               }
               case "end": {
-                return null;
-                /*
                 return (
                   <div
                     className="vt-embed-output-line vt-embed-output-line--end"
                     key={i}
                   >
-                    done
+                    Evaluation finished
                   </div>
                 );
-                */
               }
               default: {
                 // o is never
