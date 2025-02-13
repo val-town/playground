@@ -29,11 +29,11 @@ type Output =
 
 export function Playground({
   code,
+  env = {},
   workerPath,
-}: { code: string; workerPath?: string | URL }) {
+}: { env?: Record<string, string>; code: string; workerPath?: string | URL }) {
   const ref = useRef<HTMLDivElement>(null);
   const cmRef = useRef<EditorView>(null);
-  const [key, setKey] = useState("");
   const [output, setOutput] = useState<Output[] | null>(null);
 
   useEffect(() => {
@@ -78,21 +78,26 @@ export function Playground({
         ]),
       });
     });
+
+    return () => {
+      innerWorker.terminate();
+      cmRef.current?.destroy();
+      cmRef.current = null;
+    };
   }, [code, workerPath]);
 
   const run = useCallback(async () => {
     if (!cmRef.current) return;
     const doc = cmRef.current.state.doc.toString();
 
-    const formData = new FormData();
-    formData.append("code", doc);
-    formData.append("key", key);
-
     const res = await fetch(
-      "https://maxm--58271fa8e3f211ef8569e6cdfca9ef9f.web.val.run/submit",
+      "https://tmcw--2daadabd3a9b408495520e46f7fbc6b2.web.val.run/submit",
       {
         method: "POST",
-        body: formData,
+        body: JSON.stringify({
+          code: doc,
+          env,
+        }),
       },
     );
 
@@ -115,23 +120,11 @@ export function Playground({
     } else {
       setOutput([{ kind: "error", err: "Failed to run code" }]);
     }
-  }, [key]);
+  }, [env]);
 
   return (
     <div className="vt-embed">
       <div ref={ref} className="vt-embed-cm" />
-      <div className="vt-embed-key-form">
-        <label className="vt-embed-key-label" htmlFor="key">
-          Key
-        </label>
-        <input
-          className="vt-embed-key-input"
-          type="text"
-          id="key"
-          value={key}
-          onChange={(e) => setKey(e.target.value)}
-        />
-      </div>
 
       <div className="vt-embed-output">
         {output === null ? (

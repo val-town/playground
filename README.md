@@ -21,10 +21,16 @@ import { Playground } from "@valtown/playground";
 
 export function MyPage() {
   return <div>
-    <Playground code="console.log(1);" workerPath="/public/worker.ts" />
+    <Playground 
+      env={{ YOUR_API_KEY: 'something' }}
+      code="console.log(1);" workerPath="/public/worker.ts" />
   </div>;
 }
 ```
+
+The input to `env` will be stubbed-in as the values of process.env
+variables. We assume that most applications will have their own
+central UI for configuring these variables.
 
 ## Usage
 
@@ -52,3 +58,7 @@ application where it can be loaded.
 As with the example above, import the component and provide
 it with `code` prop and a `workerPath` prop that points to the
 worker file.
+
+## Styling
+
+This is an unstyled library but exposes classes that you can style.
