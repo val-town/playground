@@ -1,6 +1,6 @@
 {
   "name": "@valtown/playground",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Interactive playground to run code",
   "sideEffects": false,
   "repository": {
