@@ -29,9 +29,15 @@ type Output =
 
 export function Playground({
   code,
+  module,
   env = {},
   workerPath,
-}: { env?: Record<string, string>; code: string; workerPath?: string | URL }) {
+}: {
+  module: string;
+  env?: Record<string, string>;
+  code: string;
+  workerPath?: string | URL;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const cmRef = useRef<EditorView>(null);
   const [output, setOutput] = useState<Output[] | null>(null);
@@ -96,6 +102,7 @@ export function Playground({
         method: "POST",
         body: JSON.stringify({
           code: doc,
+          module,
           env,
         }),
       },
@@ -120,7 +127,7 @@ export function Playground({
     } else {
       setOutput([{ kind: "error", err: "Failed to run code" }]);
     }
-  }, [env]);
+  }, [env, module]);
 
   return (
     <div className="vt-embed">
