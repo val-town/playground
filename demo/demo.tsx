@@ -21,6 +21,7 @@ function App() {
         />
       </div>
       <Playground
+        module="@valtown/sdk"
         code="console.log(1)"
         env={{
           VAL_TOWN_API_KEY: key,
